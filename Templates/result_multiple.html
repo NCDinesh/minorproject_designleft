@@ -1,0 +1,41 @@
+<!-- result_multiple.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Parsing Result</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'result_styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 id="result-heading">Resume Parsing Result</h1>
+        
+        {% if entities_list %}
+            {% for entities in entities_list %}
+                <h2 class="pdf-heading">PDF Details</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Text</th>
+                            <th>Label</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entity in entities %}
+                            <tr>
+                                <td>{{ entity.text }}</td>
+                                <td>{{ entity.label }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <hr>  <!-- Separator -->
+            {% endfor %}
+        {% else %}
+            <p>No entities found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

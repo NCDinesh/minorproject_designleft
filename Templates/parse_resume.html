@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Parser</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+
+</head>
+<body>
+    <h1>Resume Parser</h1>
+    <form method="post" enctype="multipart/form-data" action="{% url 'parse_resumes' %}">
+        {% csrf_token %}
+        <label for="resumes">Upload Resumes:</label>
+        <input type="file" name="resumes" accept=".pdf" multiple>
+        <br>
+        <button type="submit">Parse Resumes</button>
+    </form>
+</body>
+</html>
