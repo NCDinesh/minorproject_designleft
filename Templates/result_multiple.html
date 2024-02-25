@@ -1,6 +1,7 @@
 <!-- result_multiple.html -->
 {% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,29 +13,26 @@
     <div class="container">
         <h1 id="result-heading">Resume Parsing Result</h1>
         
-        {% if entities_list %}
-            {% for entities in entities_list %}
-                <h2 class="pdf-heading">PDF Details</h2>
-                <table>
-                    <thead>
+        {% if ranked_resumes %}
+            <h2 class="pdf-heading">Ranked Resumes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Filename</th>
+                        <th>Similarity Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for resume in ranked_resumes %}
                         <tr>
-                            <th>Text</th>
-                            <th>Label</th>
+                            <td>{{ resume.filename }}</td>
+                            <td>{{ resume.score|floatformat:2 }}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {% for entity in entities %}
-                            <tr>
-                                <td>{{ entity.text }}</td>
-                                <td>{{ entity.label }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <hr>  <!-- Separator -->
-            {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
         {% else %}
-            <p>No entities found.</p>
+            <p>No resumes found.</p>
         {% endif %}
     </div>
 </body>

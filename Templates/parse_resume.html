@@ -1,12 +1,12 @@
-
+{% load static %}
+<!-- parse_resume.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Parser</title>
-    <link rel="stylesheet" type="text/css" href="static/style.css">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
     <h1>Resume Parser</h1>
@@ -14,6 +14,9 @@
         {% csrf_token %}
         <label for="resumes">Upload Resumes:</label>
         <input type="file" name="resumes" accept=".pdf" multiple>
+        <br>
+        <label for="job_description">Job Description:</label>
+        <textarea name="job_description" rows="4" cols="50"></textarea>
         <br>
         <button type="submit">Parse Resumes</button>
     </form>
